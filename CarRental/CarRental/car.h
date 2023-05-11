@@ -10,7 +10,7 @@
 using namespace std;
 
 class Car {
-
+	//variables
 	string ID;
 	double cost;
 	string marka;
@@ -20,12 +20,17 @@ class Car {
 	string capacity;
 	string cylinder_count;
 	vector <pair<string, string>> rent_Data;
+	//functions
+	string loader(string& arg);
 
 public:
 
+	//functions
 	Car();
-	string loader(string& arg);
 	Car(string arg);
+	string dataToString();
+	void printData();
+	string getId();
 
 };
 #endif

@@ -1,0 +1,1 @@
+123abc;12;Mustang;konikWodny;czarny;2skowile;7litr;brak;maj;czerwiec;lipiec;
