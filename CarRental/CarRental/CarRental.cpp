@@ -1,7 +1,13 @@
 ﻿#include <iostream>
+#include "car.cpp"
+
+
+using namespace std;
+
+
 
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	Car marcin("kads;321;Volvo;Vx-300;czerwony;mocny;pojemny;trzy;maj;czerwiec;styczen;");
 }
