@@ -1,4 +1,7 @@
 #include "car.h"
+#include <iostream>
+
+using namespace std;
 
 Car::Car()
 {
@@ -48,7 +51,7 @@ string Car::dataToString()
 {
 	string temp = "";
 	temp += ID + ';';
-	temp += cost + ';';
+	temp += to_string(cost) + ';';
 	temp += marka + ';';
 	temp += model + ';';
 	temp += color + ';';
