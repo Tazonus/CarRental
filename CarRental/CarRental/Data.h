@@ -15,4 +15,5 @@ public:
 	void loadData(string filename);
 	void saveData(string filename);
 	void printData();
+	Car find(string ID);
 };

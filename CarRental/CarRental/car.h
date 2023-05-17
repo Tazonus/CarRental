@@ -1,12 +1,10 @@
 #pragma once
-#ifndef CAR_H
-#define CAR_H
-
-#define errorS "NO DATA"
-
 #include <string>
 #include <vector>
 #include <sstream>
+#include <iostream>
+
+#define errorS "NO DATA"
 
 using namespace std;
 
@@ -34,4 +32,3 @@ public:
 	string getId();
 
 };
-#endif

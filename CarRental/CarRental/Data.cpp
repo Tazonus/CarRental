@@ -24,6 +24,7 @@ void Data::saveData(string filename) {
 	ofstream file;
 	file.open(filename);
 	for (pair<string, Car> x : carData) {
+
 		file << x.second.dataToString() << endl;
 	}
 	file.close();
@@ -36,4 +37,7 @@ void Data::printData()
 		auto car = (Car)pair.second;
 		cout << car.dataToString() << endl;
 	}
+}
+Car Data::find(string ID) {
+	return carData.find(ID)->second;
 }
