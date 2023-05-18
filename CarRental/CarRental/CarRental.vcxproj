@@ -144,6 +144,7 @@
     <ClCompile Include="CarRental.cpp" />
     <ClCompile Include="CommandReader.cpp" />
     <ClCompile Include="Data.cpp" />
+    <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="UserInterface.cpp" />
   </ItemGroup>
@@ -151,9 +152,11 @@
     <ClInclude Include="AdminInterface.h" />
     <ClInclude Include="CommandReader.h" />
     <ClInclude Include="Data.h" />
+    <ClInclude Include="FileHandler.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="UserInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
 </Project>
