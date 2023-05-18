@@ -1,6 +1,4 @@
 ﻿#include <iostream>
-#include <fstream>
-#include <map>
 #include "Interface.h"
 #include "UserInterface.h"
 #include "AdminInterface.h"

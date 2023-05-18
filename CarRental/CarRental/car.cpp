@@ -1,7 +1,6 @@
 #include "car.h"
 #include <iostream>
-
-using namespace std;
+#include <sstream>
 
 Car::Car()
 {
@@ -15,11 +14,11 @@ Car::Car()
 	this->cylinder_count = errorS;
 }
 
-Car::Car(string arg)
+Car::Car(std::string arg)
 {
 	this->ID = loader(arg);
 	{
-		string temp = loader(arg);
+		std::string temp = loader(arg);
 		if (temp != "NO DATA" || temp != "") istringstream(temp) >> this->cost;
 		else cost = -1;
 	}
@@ -32,26 +31,26 @@ Car::Car(string arg)
 	this->cylinder_count = loader(arg);
 
 	while (arg.find_first_of(';') != -1){
-		string first = loader(arg);
-		string second = loader(arg);
-		this->rent_Data.push_back({ first,second });
+		std::string first = loader(arg);
+		std::string second = loader(arg);
+		this->rent_Data.push_back({first, second});
 	}
 }
 
-string Car::loader(string& arg)
+std::string Car::loader(std::string& arg)
 {
-	int separator = arg.find_first_of(';');
+	size_t separator = arg.find_first_of(';');
 	if (separator == -1) return errorS;
-	string temp = arg.substr(0, separator);
+	std::string temp = arg.substr(0, separator);
 	arg.erase(0, separator + 1);
 
 	return temp;
 }
-string Car::dataToString()
+std::string Car::dataToString()
 {
-	string temp = "";
+	std::string temp = "";
 	temp += ID + ';';
-	temp += to_string(cost) + ';';
+	temp += std::to_string(cost) + ';';
 	temp += marka + ';';
 	temp += model + ';';
 	temp += color + ';';
@@ -59,7 +58,7 @@ string Car::dataToString()
 	temp += capacity + ';';
 	temp += cylinder_count + ';';
 
-	for (pair<string,string> x : rent_Data)//Do zmiany jak dodamy klase rented car, sam zapis do pliku nie bêdzie siê wiele ró¿ni³
+	for (std::pair<std::string, std::string> x : rent_Data)//Do zmiany jak dodamy klase rented car, sam zapis do pliku nie bêdzie siê wiele ró¿ni³
 	{
 		temp += x.first + ';';
 		temp += x.second + ';';
@@ -67,15 +66,15 @@ string Car::dataToString()
 	return temp;
 }
 void Car::printData() {
-	cout << "Rejestracja: "<< ID << endl;
-	cout << "Koszt: " << cost << endl;
-	cout << "Marka: " << marka <<endl;
-	cout << "Model: " << model << endl;
-	cout << "Kolor: " << color << endl;
-	cout << "Moc: " << power << endl;
-	cout << "Pojemnoœæ: " << capacity << endl;
-	cout << "Iloœæ Cylindrów: " << cylinder_count << endl;
+	std::cout << "Rejestracja: "<< ID << endl;
+	std::cout << "Koszt: " << cost << endl;
+	std::cout << "Marka: " << marka <<endl;
+	std::cout << "Model: " << model << endl;
+	std::cout << "Kolor: " << color << endl;
+	std::cout << "Moc: " << power << endl;
+	std::cout << "Pojemnoœæ: " << capacity << endl;
+	std::cout << "Iloœæ Cylindrów: " << cylinder_count << endl;
 }
-string Car::getId(){
+std::string Car::getId(){
 	return ID;
 }

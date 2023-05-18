@@ -1,29 +1,27 @@
 #include "Data.h"
+#include <iostream>
 #include <fstream>
-#include "car.h"
 
-using namespace std;
-
-void Data::loadData(string filename) {
+void Data::loadData(std::string filename) {
 	carData.clear();
 
 	ifstream file;
 	file.open(filename);
-	string tempString;
+	std::string temp;
 	while (!file.eof()) {
-		getline(file, tempString);
-		Car tempCar(tempString);
+		getline(file, temp);
+		Car tempCar(temp);
 		carData.insert({ tempCar.getId(),tempCar });
 	}
 
 	file.close();
 }
 
-void Data::saveData(string filename) {
+void Data::saveData(std::string filename) {
 	if (filename == "") filename = curentFilename;
 	ofstream file;
 	file.open(filename);
-	for (pair<string, Car> x : carData) {
+	for (std::pair<std::string, Car> x : carData) {
 
 		file << x.second.dataToString() << endl;
 	}
@@ -32,12 +30,10 @@ void Data::saveData(string filename) {
 
 void Data::printData()
 {
-	for (auto const& pair : this->carData) 
-	{
-		auto car = (Car)pair.second;
-		cout << car.dataToString() << endl;
+	for (std::pair<std::string, Car> x : carData){
+		x.second.printData();
 	}
 }
-Car Data::find(string ID) {
+Car Data::find(std::string ID) {
 	return carData.find(ID)->second;
 }

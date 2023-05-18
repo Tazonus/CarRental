@@ -1,19 +1,15 @@
 #pragma once
-#include <iostream>
 #include <string>
 #include <map>
 #include "car.h"
 
-using namespace std;
-
 class Data {
 private:
-	string curentFilename;
+	std::string curentFilename;
+	std::map <std::string, Car> carData;
 public:
-	map <string, Car> carData;
-
-	void loadData(string filename);
-	void saveData(string filename);
+	void loadData(std::string filename);
+	void saveData(std::string filename);
 	void printData();
-	Car find(string ID);
+	Car find(std::string ID);
 };

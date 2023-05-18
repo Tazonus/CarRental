@@ -1,34 +1,32 @@
 #pragma once
 #include <string>
 #include <vector>
-#include <sstream>
-#include <iostream>
-
+#include "RentedCar.h"
 #define errorS "NO DATA"
 
-using namespace std;
-
-class Car {
+class Car :
+	public RentedCar
+{
 	//variables
-	string ID;
+	std::string ID;
 	double cost;
-	string marka;
-	string model;
-	string color;
-	string power;
-	string capacity;
-	string cylinder_count;
-	vector <pair<string, string>> rent_Data;
+	std::string marka;
+	std::string model;
+	std::string color;
+	std::string capacity;
+	std::string power;
+	std::string cylinder_count;
+	std::vector <std::pair<std::string, std::string>> rent_Data;
 	//functions
-	string loader(string& arg);
+	std::string loader(std::string& arg);
 
 public:
 
 	//functions
 	Car();
-	Car(string arg);
-	string dataToString();
+	Car(std::string arg);
+	std::string dataToString();
 	void printData();
-	string getId();
+	std::string getId();
 
 };
