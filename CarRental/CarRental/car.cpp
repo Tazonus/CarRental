@@ -1,6 +1,7 @@
 #include "car.h"
 #include <iostream>
 #include <sstream>
+#define errorS "NO DATA"
 
 Car::Car()
 {
@@ -19,7 +20,7 @@ Car::Car(std::string arg)
 	this->ID = loader(arg);
 	{
 		std::string temp = loader(arg);
-		if (temp != "NO DATA" || temp != "") istringstream(temp) >> this->cost;
+		if (temp != "NO DATA" || temp != "") std::istringstream(temp) >> this->cost;
 		else cost = -1;
 	}
 
@@ -31,9 +32,20 @@ Car::Car(std::string arg)
 	this->cylinder_count = loader(arg);
 
 	while (arg.find_first_of(';') != -1){
-		std::string first = loader(arg);
-		std::string second = loader(arg);
-		this->rent_Data.push_back({first, second});
+		time_t first = 0, second = 0;
+		std::string temp = loader(arg);
+		if (temp != "NO DATA" || temp != "") {
+			
+			std::istringstream(temp) >> first;
+			temp = loader(arg);
+
+			if (temp != "NO DATA" || temp != "") {
+				std::istringstream(temp) >> second;
+			}
+			else second = first;
+
+			this->addTimeStamp(first, second);
+		}
 	}
 }
 
@@ -58,22 +70,27 @@ std::string Car::dataToString()
 	temp += capacity + ';';
 	temp += cylinder_count + ';';
 
-	for (std::pair<std::string, std::string> x : rent_Data)//Do zmiany jak dodamy klase rented car, sam zapis do pliku nie bêdzie siê wiele ró¿ni³
+	for (int i = 0; i < countTimeStamps(); i++)
 	{
-		temp += x.first + ';';
-		temp += x.second + ';';
+		std::pair<time_t, time_t> temp_ts = getTimeStamp(i);
+		temp += std::to_string(temp_ts.first) + ';';
+		temp += std::to_string(temp_ts.second) + ';';
 	}
 	return temp;
 }
 void Car::printData() {
-	std::cout << "Rejestracja: "<< ID << endl;
-	std::cout << "Koszt: " << cost << endl;
-	std::cout << "Marka: " << marka <<endl;
-	std::cout << "Model: " << model << endl;
-	std::cout << "Kolor: " << color << endl;
-	std::cout << "Moc: " << power << endl;
-	std::cout << "Pojemnoœæ: " << capacity << endl;
-	std::cout << "Iloœæ Cylindrów: " << cylinder_count << endl;
+	std::cout << "Rejestracja: "	 << ID				<< std::endl;
+	std::cout << "Koszt: "			 << cost			<< std::endl;
+	std::cout << "Marka: "			 << marka			<< std::endl;
+	std::cout << "Model: "			 << model			<< std::endl;
+	std::cout << "Kolor: "			 << color			<< std::endl;
+	std::cout << "Moc: "			 << power			<< std::endl;
+	std::cout << "Pojemnoœæ: "	 	 << capacity		<< std::endl;
+	std::cout << "Iloœæ Cylindrów: " << cylinder_count  << std::endl;
+	std::cout << "Rezerwacje: "<< std::endl;
+	for (int i = 0; i < countTimeStamps(); i++){
+		std::cout << timeStampToString(i);
+	}
 }
 std::string Car::getId(){
 	return ID;

@@ -2,18 +2,20 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <ctime>
 #include <vector>
-using namespace std;
+#include <string>
 
 class RentedCar
 {
 public:
-	pair <time_t, time_t> getTimeStamp(int id);
+	std::pair <time_t, time_t> getTimeStamp(int id);
 	void UpdateTimeStamp();
 	void addTimeStamp(time_t first, time_t second);
 	void removeTimeStamp(int id);
 	void sortTimeStamps();
-	
+	size_t countTimeStamps();
+	std::string timeStampToString(int id);
+
 private:
-	vector < pair < time_t, time_t >> timeStamps;
+	std::vector<std::pair<time_t, time_t>> timeStamps;
 };
 

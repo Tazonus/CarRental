@@ -10,6 +10,9 @@ private:
 public:
 	void loadData(std::string filename);
 	void saveData(std::string filename);
-	void printData();
+	void printAllData();
+	void addCar(Car arg);
+	void addCar(std::string arg);
+	void removeCar(std::string ID);
 	Car find(std::string ID);
 };

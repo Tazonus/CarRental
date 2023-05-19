@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
 
 using namespace std;
 
@@ -132,11 +133,7 @@ void CommandReader::Add()
     string arg = InputCarData();
 
     //string arg = "321abc;12;Mustang;konikWodny;czarny;2skowile;7litr;brak;";
-    auto newCar = new Car(arg);
-
-    this->data.carData.insert({ newCar->getId(), *newCar });
-
-    delete(newCar);
+    this->data.addCar(Car(arg));
 }
 
 void CommandReader::Remove(string id)
@@ -148,25 +145,23 @@ void CommandReader::Search(string id)
 {
     if (id == "-all")
     {
-        this->data.printData();
+        this->data.printAllData();
         return;
     }
 
-    if (this->data.carData.find(id) == this->data.carData.end())
+    if (this->data.find(id).getId() == "NO DATA")
     {
-        cout << "Nie znaleziono aut" << endl;
+        cout << "Nie znaleziono auta" << endl;
         return;
     }
 
-    auto car = this->data.carData[id];
-
-    cout << car.dataToString() << endl;
+    this->data.find(id).printData();
 }
 
 
-string CommandReader::InputCarData()
+std::string CommandReader::InputCarData()
 {
-    string arg = "", line;
+    std::string arg = "", line;
     cout << endl << "Numer rejestracyjny: ";
     cin >> line;
     arg += line + ";";
@@ -203,7 +198,7 @@ string CommandReader::InputCarData()
 }
 
 
-vector<string> CommandReader::Split(string arg, char space)
+std::vector<std::string> CommandReader::Split(std::string arg, char space)
 {
     std::string line;
     std::vector<std::string> vec;

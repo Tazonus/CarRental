@@ -16,7 +16,6 @@ class Car :
 	std::string capacity;
 	std::string power;
 	std::string cylinder_count;
-	std::vector <std::pair<std::string, std::string>> rent_Data;
 	//functions
 	std::string loader(std::string& arg);
 
