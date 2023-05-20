@@ -3,15 +3,18 @@
 
 int AdminInterface::Run()
 {
+	cout << "Witaj w panelu zarzadu" << endl;
+
 	auto commandReader = new CommandReader();
 	do
 	{
-		
+
 		if (commandReader->ReadNextLine() < 0)
 		{
+			cout << "Nieprawidlowa komenda" << endl;
 			continue;
 		}
-		commandReader->ExecuteCommand(1);
+		commandReader->ExecuteCommand(true);
 
 	} while (true);
 

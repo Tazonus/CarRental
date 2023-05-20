@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include <sstream>
 
 using namespace std;
@@ -19,9 +20,9 @@ CommandReader::~CommandReader()
 
 int CommandReader::ReadNextLine()
 {
-	string line;
+    string line;
 
-    cout << "Wpisz komende: \n";
+    cout << "\n# ";
 
     cin.clear();
     cin.sync();
@@ -33,25 +34,24 @@ int CommandReader::ReadNextLine()
     }
 
     this->command = this->Split(line, ' ');
-
     return 0;
 }
 
 
 int CommandReader::ExecuteCommand(bool isAdmin)
 {
-    switch (this->CheckCommand())
+    switch (this->CheckCommand(isAdmin))
     {
     case 1:
         this->Add();
         break;
 
     case 2:
-        this->Remove(this->command[1]);
+        this->Remove();
         break;
 
     case 3:
-        this->Search(this->command[1]);
+        this->Search();
         break;
 
     case 4:
@@ -61,69 +61,94 @@ int CommandReader::ExecuteCommand(bool isAdmin)
         break;
 
     case 0:
+        cout << "Brak dostepu" << endl;
         break;
 
     case -1:
+        cout << "Niepoprawna komenda" << endl;
         break;
 
+    case -2:
+        cout << "Niepoprawny argument" << endl;
+        break;
     }
 
     return 0;
 }
 
 
-int CommandReader::CheckCommand()
+int CommandReader::CheckCommand(bool isAdmin)
 {
+    // Check Add command arguments
     if (this->command[0] == "add")
     {
-        return 1;
-    }
-
-    if (this->command[0] == "remove")
-    {
-        if (this->command.size() > 1)
-        {
-            return 2;
-        }
-        
-        cout << "Invalid ID number";
+        if (isAdmin)
+            return 1;
         return 0;
     }
 
+    // Check remove command arguments
+    if (this->command[0] == "remove")
+    {
+        if (isAdmin)
+            return 2;
+        return 0;
+    }
+
+    // Check search command arguments
     if (this->command[0] == "search")
     {
         if (this->command.size() > 1)
         {
+            if (this->command[1] != "-all" && this->command[1][0] == '-')       // search -sortBy
+            {
+                this->command.insert(this->command.begin() + 1, "-all");        // convert to: search -all -sortBy
+
+                if (this->command[2] != "-id" && this->command[2] != "-brand" && this->command[2] != "-color")
+                {
+                    return -2;                                                  // invalid sortBy argument
+                }
+
+                return 3;
+            }
+            else
+            {
+                if (this->command.size() == 2)      // search _id_
+                {
+                    this->command.push_back("-id"); // convert to: search _id_ -id
+                    return 3;
+                }
+
+                if (this->command.size() > 2)       // search _id_ -sortBy
+                {
+                    if (this->command[2] != "-id" && this->command[2] != "-brand" && this->command[2] != "-color")
+                    {
+                        return -2;                  // invalid sortBy argument
+                    }
+                    return 3;
+                }
+            }
+
+        }
+        else
+        {
+            this->command.push_back("-all");
+            this->command.push_back("-id");
             return 3;
         }
 
-        cout << "Invalid ID number";
-        return 0;
     }
 
     if (this->command[0] == "rent")
     {
-        if (this->command.size() > 1)
-        {
-            return 4;
-        }
-
-        cout << "Invalid ID number";
-        return 0;
+        return 4;
     }
 
     if (this->command[0] == "unrent")
     {
-        if (this->command.size() > 1)
-        {
-            return 5;
-        }
-
-        cout << "Invalid ID number";
-        return 0;
+        return 5;
     }
 
-    cout << "Invalid command or argument";
     return -1;
 }
 
@@ -133,35 +158,78 @@ void CommandReader::Add()
     string arg = InputCarData();
 
     //string arg = "321abc;12;Mustang;konikWodny;czarny;2skowile;7litr;brak;";
-    this->data.addCar(Car(arg));
+
+    this->data.addCar(arg);
+
+    cout << endl << "Dodano pomyslnie" << endl;
 }
 
-void CommandReader::Remove(string id)
+void CommandReader::Remove()
 {
-
-}
-
-void CommandReader::Search(string id)
-{
-    if (id == "-all")
+    string id;
+    if (this->command.size() > 1)
     {
-        this->data.printAllData();
-        return;
+        id = this->command[1];
+    }
+    else
+    {
+        cout << endl << "Podaj numer rejestracyjny samochodu: " << endl;
+        cin >> id;
     }
 
-    if (this->data.find(id).getId() == "NO DATA")
+    if (data.find(id) == *new Car())
     {
-        cout << "Nie znaleziono auta" << endl;
+        cout << endl << "Nie znaleziono samochodu" << endl;
         return;
     }
+    data.removeCar(id);
+    cout << endl << "Usunieto pomyslnie" << endl;
 
-    this->data.find(id).printData();
+}
+
+void CommandReader::Search()
+{
+    string id = this->command[1];
+    string sortby = this->command[2];
+
+    if (id != "-all")
+    {
+        if (data.find(id) != *new Car())
+        {
+            Car::printHeadLine();
+            data.find(id).printData();
+            return;
+        }
+
+        cout << "Nie znaleziono auta o numerze rejestracyjnym: " << id << endl;
+        return;
+    }
+    else
+    {
+        if (sortby == "-id")
+        {
+            data.printData(1);
+            return;
+        }
+
+        if (sortby == "-brand")
+        {
+            data.printData(2);
+            return;
+        }
+
+        if (sortby == "-color")
+        {
+            data.printData(3);
+            return;
+        }
+    }
 }
 
 
-std::string CommandReader::InputCarData()
+string CommandReader::InputCarData()
 {
-    std::string arg = "", line;
+    string arg = "", line;
     cout << endl << "Numer rejestracyjny: ";
     cin >> line;
     arg += line + ";";
@@ -172,10 +240,12 @@ std::string CommandReader::InputCarData()
 
     cout << endl << "Marka: ";
     cin >> line;
+    line[0] = toupper(line[0]);
     arg += line + ";";
 
     cout << endl << "Model: ";
     cin >> line;
+    line[0] = toupper(line[0]);
     arg += line + ";";
 
     cout << endl << "Kolor: ";
@@ -198,16 +268,15 @@ std::string CommandReader::InputCarData()
 }
 
 
-std::vector<std::string> CommandReader::Split(std::string arg, char space)
+vector<string> CommandReader::Split(string arg, char space)
 {
     std::string line;
     std::vector<std::string> vec;
     std::stringstream ss(arg);
-    while (std::getline(ss, line, space)) 
+    while (std::getline(ss, line, space))
     {
         vec.push_back(line);
     }
 
     return vec;
 }
-

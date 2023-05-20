@@ -144,6 +144,7 @@
     <ClCompile Include="CarRental.cpp" />
     <ClCompile Include="CommandReader.cpp" />
     <ClCompile Include="Data.cpp" />
+    <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="RentedCar.cpp" />
     <ClCompile Include="UserInterface.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="car.h" />
     <ClInclude Include="CommandReader.h" />
     <ClInclude Include="Data.h" />
+    <ClInclude Include="FileHandler.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="RentedCar.h" />
     <ClInclude Include="UserInterface.h" />
