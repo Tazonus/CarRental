@@ -9,13 +9,14 @@ using namespace std;
 
 CommandReader::CommandReader()
 {
-    string path = "mojaWymarzonaStajnia.txt";
+    string path = "data.txt";
     this->data.loadData(path);
 }
 
 CommandReader::~CommandReader()
 {
-
+    string path = "data.txt";
+    this->data.saveData(path);
 }
 
 int CommandReader::ReadNextLine()
@@ -59,6 +60,9 @@ int CommandReader::ExecuteCommand(bool isAdmin)
 
     case 5:
         break;
+
+    case 6:
+        return -1;  // exit from program
 
     case 0:
         cout << "Brak dostepu" << endl;
@@ -147,6 +151,11 @@ int CommandReader::CheckCommand(bool isAdmin)
     if (this->command[0] == "unrent")
     {
         return 5;
+    }
+
+    if (this->command[0] == "exit")
+    {
+        return 6;
     }
 
     return -1;

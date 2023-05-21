@@ -11,6 +11,7 @@ class Data {
 private:
 	std::string curentFilename;
 	std::map <std::string, Car> carData;
+
 public:
 	void loadData(std::string filename);
 	void saveData(std::string filename);

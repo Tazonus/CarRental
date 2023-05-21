@@ -28,7 +28,7 @@ int main()
 		mainInterface = new UserInterface();
 	}
 
-	cout << mainInterface->Run();
+	mainInterface->Run();
 
 
 	/*

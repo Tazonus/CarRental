@@ -5,6 +5,8 @@ int AdminInterface::Run()
 {
 	cout << "Witaj w panelu zarzadu" << endl;
 
+	int result = 0;
+
 	auto commandReader = new CommandReader();
 	do
 	{
@@ -14,9 +16,9 @@ int AdminInterface::Run()
 			cout << "Nieprawidlowa komenda" << endl;
 			continue;
 		}
-		commandReader->ExecuteCommand(true);
+		result = commandReader->ExecuteCommand(true);
 
-	} while (true);
+	} while (result >= 0);
 
 	delete(commandReader);
 

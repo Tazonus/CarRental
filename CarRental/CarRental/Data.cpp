@@ -1,6 +1,7 @@
 #include "Data.h"
 #include <iostream>
 #include <fstream>
+#include "FileHandler.h"
 
 void Data::loadData(std::string filename) {
 	carData.clear();
@@ -8,12 +9,18 @@ void Data::loadData(std::string filename) {
 	std::ifstream file;
 	file.open(filename);
 	std::string temp;
-	while (!file.eof()) {
+
+	auto fileHandler = new FileHandler();
+	while (!file.eof()) {		
 		getline(file, temp);
-		Car tempCar(temp);
+
+		if (temp == "")
+			continue;
+		Car tempCar(fileHandler->Encrypt(temp));
 		carData.insert({ tempCar.getId(),tempCar });
 	}
 
+	delete(fileHandler);
 	file.close();
 }
 
@@ -21,10 +28,15 @@ void Data::saveData(std::string filename) {
 	if (filename == "") filename = curentFilename;
 	std::ofstream file;
 	file.open(filename);
+
+	auto fileHandler = new FileHandler();
+
 	for (std::pair<std::string, Car> x : carData) {
 
-		file << x.second.dataToString() << std::endl;
+		file << fileHandler->Encrypt(x.second.dataToString())<< std::endl;
 	}
+
+	delete(fileHandler);
 	file.close();
 }
 
