@@ -3,14 +3,16 @@
 
 using namespace std;
 
-string FileHandler::Encrypt(const string& text) {
-    string encryptedMessage;
-    for (int a = 0; a < text.length(); a++) {
-        encryptedMessage += text[a] ^ this->key[a % this->key.length()];
-    }
-    return encryptedMessage;
-}
+string FileHandler::Encrypt(string toEncrypt) {
+    char keys[3] = { this->key1, this->key2, this->key3 };
+    string encrypted = toEncrypt;
 
-string FileHandler::Decrypt(const string& encryptedText, const string& key) {
-    return Encrypt(encryptedText);
+    for (int i = 0; i < toEncrypt.size(); i++)
+        if (encrypted[i] == 'M') {
+        }
+        else {
+            encrypted[i] = toEncrypt[i] ^ keys[i % (sizeof(keys) / sizeof(char))];
+        }
+
+    return encrypted;
 }

@@ -5,21 +5,14 @@ using namespace std;
 class FileHandler
 {
 public:
-	string key = "klucz";
-
-	/// <summary>
-	/// Function encrypts given text using XOR crypting
-	/// </summary>
-	/// <param name="message">string to be encrypted</param>
-	/// <returns></returns>
-	string Encrypt(const string& message);
-
-	/// <summary>
-	/// Function decrypts text previously crypted with Encrypt method
-	/// </summary>
-	/// <param name="encryptedMessage">string to be decrypted</param>
-	/// <returns></returns>
-	string Decrypt(const string& encryptedMessage, const string& key);
+    char key1 = 'C';
+    char key2 = 'A';
+    char key3 = 'R';
+    /// <summary>
+    /// Function both encrypts and decrypts given text using XOR crypting with a previously given key
+    /// </summary>
+    /// <param name="message">string to be encrypted</param>
+    /// <returns></returns>
+    string Encrypt(string toEncrypt);
 
 };
-
