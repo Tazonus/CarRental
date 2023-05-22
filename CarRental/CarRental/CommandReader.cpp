@@ -236,6 +236,52 @@ void CommandReader::Search()
 }
 
 
+void CommandReader::Rent()
+{
+    string id;
+    if (this->command.size() > 1)
+    {
+        id = this->command[1];
+    }
+    else
+    {
+        cout << endl << "Podaj numer rejestracyjny samochodu: " << endl;
+        cin >> id;
+    }
+
+    if (data.find(id) == *new Car())
+    {
+        cout << endl << "Nie znaleziono samochodu" << endl;
+        return;
+    }
+    
+    // rent
+}
+
+
+void CommandReader::Unrent()
+{
+    string id;
+    if (this->command.size() > 1)
+    {
+        id = this->command[1];
+    }
+    else
+    {
+        cout << endl << "Podaj numer rejestracyjny samochodu: " << endl;
+        cin >> id;
+    }
+
+    if (data.find(id) == *new Car())
+    {
+        cout << endl << "Nie znaleziono samochodu" << endl;
+        return;
+    }
+
+    // unrent
+}
+
+
 string CommandReader::InputCarData()
 {
     string arg = "", line;
