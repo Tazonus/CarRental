@@ -139,7 +139,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AdminInterface.cpp" />
+    <ClCompile Include="car.cpp" />
     <ClCompile Include="CarRental.cpp" />
+    <ClCompile Include="CommandReader.cpp" />
+    <ClCompile Include="Data.cpp" />
+    <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="RentedCar.cpp" />
+    <ClCompile Include="UserInterface.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AdminInterface.h" />
+    <ClInclude Include="car.h" />
+    <ClInclude Include="CommandReader.h" />
+    <ClInclude Include="Data.h" />
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="Interface.h" />
+    <ClInclude Include="RentedCar.h" />
+    <ClInclude Include="UserInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
