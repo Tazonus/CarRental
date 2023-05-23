@@ -8,6 +8,8 @@ int UserInterface::Run()
 	cout << "Witaj w panelu uzytkownika \nAby wyswietlic dostepne komendy wpisz userhelp" << endl;
 	cout << "---------------------------------------------------------------------------" << endl;
 
+	int result = 0;
+
 	auto commandReader = new CommandReader();
 	do
 	{
@@ -17,9 +19,9 @@ int UserInterface::Run()
 			cout << "Nieprawidlowa komenda" << endl;
 			continue;
 		}
-		commandReader->ExecuteCommand(false);
+		result = commandReader->ExecuteCommand(false);
 
-	} while (true);
+	} while (result >= 0);
 
 	delete(commandReader);
 	return 1;

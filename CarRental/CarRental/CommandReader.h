@@ -90,5 +90,7 @@ private:
 	/// <param name="space"> separator</param>
 	/// <returns></returns>
 	vector<string> Split(string arg, char space);
+
+	static std::time_t stringToTime_t(const std::string& str, bool is_dst = false, const std::string& format = "%Y-%b-%d");
 };
 

@@ -47,6 +47,8 @@ Car::Car(std::string arg)
 			this->addTimeStamp(first, second);
 		}
 	}
+
+	sortTimeStamps();
 }
 
 std::string Car::loader(std::string& arg)
@@ -81,22 +83,32 @@ std::string Car::dataToString()
 
 void Car::printData()
 {
-	cout.width(20);
+	cout.width(15);
 	cout << this->ID;
-	cout.width(20);
+	cout.width(15);
 	cout << this->cost;
-	cout.width(20);
+	cout.width(15);
 	cout << this->marka;
-	cout.width(20);
+	cout.width(15);
 	cout << this->model;
-	cout.width(20);
+	cout.width(15);
 	cout << this->color;
-	cout.width(20);
+	cout.width(15);
 	cout << this->power;
-	cout.width(20);
+	cout.width(15);
 	cout << this->capacity;
-	cout.width(20);
-	cout << this->cylinder_count << endl;
+	cout.width(15);
+	cout << this->cylinder_count;
+
+	for (int i = 0; i < countTimeStamps(); i++)
+	{
+		std::pair<time_t, time_t> temp_ts = getTimeStamp(i);
+		cout.width(15);
+		cout<< std::to_string(temp_ts.first);
+		cout.width(15);
+		cout<< std::to_string(temp_ts.second);
+	}
+	cout << endl;
 }
 
 void Car::printHeadLine()

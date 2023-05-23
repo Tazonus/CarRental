@@ -5,6 +5,9 @@
 #include <algorithm>
 #include <sstream>
 #include <fstream>
+#include <ctime>
+#include <locale>
+#include <iomanip>
 
 using namespace std;
 
@@ -61,10 +64,12 @@ int CommandReader::ExecuteCommand(bool isAdmin)
 
     case 4:
         system("cls");
+        this->Rent();
         break;
 
     case 5:
         system("cls");
+        this->Unrent();
         break;
 
     case 6:
@@ -165,11 +170,21 @@ int CommandReader::CheckCommand(bool isAdmin)
 
     if (this->command[0] == "rent")
     {
+        if (this->command.size() < 4)
+        {
+            return -2;
+        }
+
         return 4;
     }
 
     if (this->command[0] == "unrent")
     {
+        if (this->command.size() < 3)
+        {
+            return -2;
+        }
+
         return 5;
     }
 
@@ -287,7 +302,13 @@ void CommandReader::Rent()
         return;
     }
     
-    // rent
+
+    auto first = stringToTime_t(this->command[2]);
+    auto second = stringToTime_t(this->command[3]);
+
+    data.rentCar(this->command[1], first, second);
+
+    cout << endl << "Wypozyczono pomyslnie" << endl;
 }
 
 
@@ -310,7 +331,8 @@ void CommandReader::Unrent()
         return;
     }
 
-    // unrent
+    data.unrent(this->command[1], stoi(this->command[2]));
+    
 }
 
 void CommandReader::AdminHelp() {
@@ -385,4 +407,13 @@ vector<string> CommandReader::Split(string arg, char space)
     }
 
     return vec;
+}
+
+std::time_t CommandReader::stringToTime_t(const std::string& str, bool is_dst, const std::string& format)
+{
+    std::tm t = { 0 };
+    t.tm_isdst = is_dst ? 1 : 0;
+    std::istringstream ss(str);
+    ss >> std::get_time(&t, format.c_str());
+    return mktime(&t);
 }

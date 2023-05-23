@@ -88,6 +88,22 @@ void Data::removeCar(std::string ID) {
 	carData.erase(carData.find(ID));
 }
 
+void Data::rentCar(std::string ID, time_t first, time_t second)
+{
+	auto rentedCar = find(ID);
+	removeCar(ID);
+	rentedCar.addTimeStamp(first, second);
+	addCar(rentedCar);
+}
+
+void Data::unrent(std::string ID, int _id)
+{
+	auto rentedCar = find(ID);
+	removeCar(ID);
+	rentedCar.removeTimeStamp(_id);
+	addCar(rentedCar);
+}
+
 Car Data::find(std::string ID) {
 	if (carData.find(ID) != carData.end()) {
 		return carData.find(ID)->second;

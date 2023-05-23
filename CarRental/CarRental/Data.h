@@ -19,6 +19,8 @@ public:
 	void addCar(Car arg);
 	void addCar(std::string arg);
 	void removeCar(std::string ID);
+	void rentCar(std::string ID, time_t first, time_t second);
+	void unrent(std::string ID, int _id);
 	Car find(std::string ID);
 
 	/// <summary>
