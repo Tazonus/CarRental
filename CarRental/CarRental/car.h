@@ -2,10 +2,12 @@
 #include <string>
 #include <vector>
 #include "RentedCar.h"
+#include "Engine.h"
 #define errorS "NO DATA"
 
 class Car :
-	public RentedCar
+	public RentedCar,
+	private Engine
 {
 	//variables
 	std::string ID;
@@ -13,9 +15,6 @@ class Car :
 	std::string marka;
 	std::string model;
 	std::string color;
-	std::string capacity;
-	std::string power;
-	std::string cylinder_count;
 	//functions
 	std::string loader(std::string& arg);
 

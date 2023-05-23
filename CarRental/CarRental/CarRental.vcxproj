@@ -153,6 +153,7 @@
     <ClInclude Include="car.h" />
     <ClInclude Include="CommandReader.h" />
     <ClInclude Include="Data.h" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="RentedCar.h" />
     <ClInclude Include="UserInterface.h" />

@@ -47,6 +47,7 @@ Car::Car(std::string arg)
 			this->addTimeStamp(first, second);
 		}
 	}
+	sortTimeStamps();
 }
 
 std::string Car::loader(std::string& arg)
