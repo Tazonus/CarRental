@@ -63,6 +63,16 @@ private:
 	/// </summary>
 	void Search();
 
+	/// <summary>
+	/// Prints possible commands for the administrator (if the administrator is logged in)
+	/// </summary>
+	void AdminHelp();
+
+	/// <summary>
+	/// Prints possible commands for the user
+	/// </summary>
+	void UserHelp();
+
 	string Hash(string line);
 
 

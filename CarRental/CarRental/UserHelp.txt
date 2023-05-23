@@ -1,0 +1,11 @@
+---------------------------------------------------------------------------
+Dostepne komendy dla Uzytkownika
+---------------------------------------------------------------------------
+rent ///do zrobienia
+unrent ///do zrobienia
+search (wyswietla pojazdy z bazy danych)
+	search "id" (wyswietla pojazd o numerze rejestracyjnym "id")
+	search -color (sortuje auta wedlug koloru)
+	search -brand (sortuje auta wedlug firmy)
+	search -id (sortuje auta wedlug numeru rejestracyjnego)
+---------------------------------------------------------------------------

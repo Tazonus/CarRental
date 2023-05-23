@@ -1,0 +1,11 @@
+---------------------------------------------------------------------------
+Dostepne komendy dla Administratora:
+---------------------------------------------------------------------------
+add (dodaje auto do bazy pojazdow)
+remove (usuwa auto z bazy pojazdow)
+search (wyswietla pojazdy z bazy danych)
+	search "id" (wyswietla pojazd o numerze rejestracyjnym "id")
+	search -color (sortuje auta wedlug koloru)
+	search -brand (sortuje auta wedlug firmy)
+	search -id (sortuje auta wedlug numeru rejestracyjnego)
+---------------------------------------------------------------------------

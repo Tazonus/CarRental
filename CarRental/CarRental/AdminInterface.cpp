@@ -3,7 +3,9 @@
 
 int AdminInterface::Run()
 {
-	cout << "Witaj w panelu zarzadu" << endl;
+	cout << "---------------------------------------------------------------------------" << endl;
+	cout << "Witaj w panelu zarzadu \nAby wyswietlic dostepne komendy dla administratora wpisz adminhelp" << endl;
+	cout << "---------------------------------------------------------------------------" << endl;
 
 	int result = 0;
 

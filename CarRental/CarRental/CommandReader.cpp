@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include <sstream>
+#include <fstream>
 
 using namespace std;
 
@@ -63,6 +64,14 @@ int CommandReader::ExecuteCommand(bool isAdmin)
 
     case 6:
         return -1;  // exit from program
+
+    case 7:
+        this->AdminHelp();
+        break;
+
+    case 8:
+        this->UserHelp();
+        break;
 
     case 0:
         cout << "Brak dostepu" << endl;
@@ -156,6 +165,18 @@ int CommandReader::CheckCommand(bool isAdmin)
     if (this->command[0] == "exit")
     {
         return 6;
+    }
+
+    if (this->command[0] == "adminhelp")
+    {
+        if (isAdmin)
+            return 7;
+        return 0;
+    }
+
+    if (this->command[0] == "userhelp")
+    {
+        return 8;
     }
 
     return -1;
@@ -281,6 +302,25 @@ void CommandReader::Unrent()
     // unrent
 }
 
+void CommandReader::AdminHelp() {
+    ifstream file("AdminHelp.txt");
+    string line;
+    while (file.eof() == 0) {
+        getline(file, line);
+        cout << line << endl;
+    }
+    file.close();
+}
+
+void CommandReader::UserHelp() {
+    ifstream file("UserHelp.txt");
+    string line;
+    while (file.eof() == 0) {
+        getline(file, line);
+        cout << line << endl;
+    }
+    file.close();
+}
 
 string CommandReader::InputCarData()
 {
