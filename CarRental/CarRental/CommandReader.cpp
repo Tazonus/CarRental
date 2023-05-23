@@ -8,6 +8,7 @@
 #include <ctime>
 #include <locale>
 #include <iomanip>
+#include "FileHandler.h"
 
 using namespace std;
 
@@ -45,6 +46,8 @@ int CommandReader::ReadNextLine()
 
 int CommandReader::ExecuteCommand(bool isAdmin)
 {
+    bool result = false;
+
     switch (this->CheckCommand(isAdmin))
     {
     case 1:
@@ -84,6 +87,16 @@ int CommandReader::ExecuteCommand(bool isAdmin)
     case 8:
         system("cls");
         this->UserHelp();
+        break;
+
+    case 9:
+        system("cls");
+        result = this->Login();
+        if (result)
+            return 1;
+        else
+            cout << "Niepoprawne haslo" << endl;
+
         break;
 
     case 0:
@@ -203,6 +216,11 @@ int CommandReader::CheckCommand(bool isAdmin)
     if (this->command[0] == "userhelp")
     {
         return 8;
+    }
+
+    if (this->command[0] == "login")
+    {
+        return 9;
     }
 
     return -1;
@@ -354,6 +372,27 @@ void CommandReader::UserHelp() {
     }
     file.close();
 }
+
+bool CommandReader::Login()
+{
+    string passwd;
+    cout <<endl<< "Podaj haslo: ";
+    cin >> passwd;
+
+    fstream file("password.txt");
+
+    string t_passwd;
+    file >> t_passwd;
+
+    auto handler = new FileHandler();
+
+    if (passwd == handler->Encrypt(t_passwd))
+    {
+        return true;
+    }
+    return false;
+}
+
 
 string CommandReader::InputCarData()
 {

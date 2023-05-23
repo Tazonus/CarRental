@@ -12,29 +12,24 @@ int main()
 {
 	auto mainInterface = new Interface();
 
-
 	string passwd;
+	
+	mainInterface = new UserInterface();
 
-	cout << "Haslo admina = qwerty" << endl;
-
-	cin >> passwd;
-
-	if (passwd.compare("qwerty") == 0)
+	int result = 1;
+	do
 	{
-		mainInterface = new AdminInterface();
-	}
-	else
-	{
-		mainInterface = new UserInterface();
-	}
+		result = mainInterface->Run();
 
-	mainInterface->Run();
+		if (result == 1)
+		{
+			delete(mainInterface);
+			mainInterface = new AdminInterface();
+		}
+
+	} while (result > 0);
 
 
-	/*
-	mainInterface = new AdminInterface();
-	mainInterface->Run();
-	*/
-
+	
 	return 0;
 }

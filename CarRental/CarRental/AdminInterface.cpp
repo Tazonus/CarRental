@@ -22,9 +22,14 @@ int AdminInterface::Run()
 		}
 		result = commandReader->ExecuteCommand(true);
 
+		if (result == 1)	// zalogowano do admina
+		{
+			return 1;
+		}
+
 	} while (result >= 0);
 
 	delete(commandReader);
 
-	return 2;
+	return 0;
 }

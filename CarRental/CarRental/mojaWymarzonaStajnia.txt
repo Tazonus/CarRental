@@ -1,2 +1,0 @@
-123abc;12;Mustang;konikWodny;czarny;2skowile;7litr;brak;maj;czerwiec;lipiec;
-DW2137;69;Honda;Civic;zielony;300;3.0;12;

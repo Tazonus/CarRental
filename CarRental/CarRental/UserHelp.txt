@@ -1,10 +1,12 @@
 ---------------------------------------------------------------------------
 Dostepne komendy dla Uzytkownika
 ---------------------------------------------------------------------------
-rent ///do zrobienia
-unrent ///do zrobienia
-search (wyswietla pojazdy z bazy danych)
-	search "id" (wyswietla pojazd o numerze rejestracyjnym "id")
+rent [id samochodu] [Rok-miesiac(slownie)-dzien] [Rok-miesiac(slownie)-dzien] 
+unrent [id samochodu] [numer wypozyczenia]
+login
+exit (zapisuje dane)
+search [id pojazdu] [tryb sortowania] (wyswietla pojazdy z bazy danych)
+	search "id" (wyswietla pojazd o numerze rejestracyjnym "id") [-all aby wyswietlic wszystko]
 	search -color (sortuje auta wedlug koloru)
 	search -brand (sortuje auta wedlug firmy)
 	search -id (sortuje auta wedlug numeru rejestracyjnego)

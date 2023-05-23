@@ -21,8 +21,13 @@ int UserInterface::Run()
 		}
 		result = commandReader->ExecuteCommand(false);
 
+		if (result == 1)	// zalogowano do admina
+		{
+			return 1;
+		}
+
 	} while (result >= 0);
 
 	delete(commandReader);
-	return 1;
+	return 0;
 }

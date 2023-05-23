@@ -75,6 +75,11 @@ private:
 
 	string Hash(string line);
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns>true if logged correctly</returns>
+	bool Login();
 
 	/// <summary>
 	/// Scans car data
