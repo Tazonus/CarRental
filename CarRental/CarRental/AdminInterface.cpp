@@ -1,8 +1,10 @@
 #include "AdminInterface.h"
 #include "CommandReader.h"
 
+
 int AdminInterface::Run()
 {
+	system("cls");
 	cout << "---------------------------------------------------------------------------" << endl;
 	cout << "Witaj w panelu zarzadu \nAby wyswietlic dostepne komendy dla administratora wpisz adminhelp" << endl;
 	cout << "---------------------------------------------------------------------------" << endl;

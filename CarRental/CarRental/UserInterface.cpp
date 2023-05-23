@@ -3,6 +3,11 @@
 
 int UserInterface::Run()
 {
+	system("cls");
+	cout << "---------------------------------------------------------------------------" << endl;
+	cout << "Witaj w panelu uzytkownika \nAby wyswietlic dostepne komendy wpisz userhelp" << endl;
+	cout << "---------------------------------------------------------------------------" << endl;
+
 	auto commandReader = new CommandReader();
 	do
 	{

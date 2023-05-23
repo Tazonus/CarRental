@@ -45,43 +45,54 @@ int CommandReader::ExecuteCommand(bool isAdmin)
     switch (this->CheckCommand(isAdmin))
     {
     case 1:
+        system("cls");
         this->Add();
         break;
 
     case 2:
+        system("cls");
         this->Remove();
         break;
 
     case 3:
+        system("cls");
         this->Search();
         break;
 
     case 4:
+        system("cls");
         break;
 
     case 5:
+        system("cls");
         break;
 
     case 6:
+        system("cls");
         return -1;  // exit from program
 
     case 7:
+        system("cls");
         this->AdminHelp();
         break;
 
     case 8:
+        system("cls");
         this->UserHelp();
         break;
 
     case 0:
+        system("cls");
         cout << "Brak dostepu" << endl;
         break;
 
     case -1:
+        system("cls");
         cout << "Niepoprawna komenda" << endl;
         break;
 
     case -2:
+        system("cls");
         cout << "Niepoprawny argument" << endl;
         break;
     }
