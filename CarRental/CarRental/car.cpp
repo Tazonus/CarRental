@@ -47,6 +47,7 @@ Car::Car(std::string arg)
 			this->addTimeStamp(first, second);
 		}
 	}
+
 	sortTimeStamps();
 }
 
@@ -79,20 +80,72 @@ std::string Car::dataToString()
 	}
 	return temp;
 }
-void Car::printData() {
-	std::cout << "Rejestracja: "	 << ID				<< std::endl;
-	std::cout << "Koszt: "			 << cost			<< std::endl;
-	std::cout << "Marka: "			 << marka			<< std::endl;
-	std::cout << "Model: "			 << model			<< std::endl;
-	std::cout << "Kolor: "			 << color			<< std::endl;
-	std::cout << "Moc: "			 << power			<< std::endl;
-	std::cout << "Pojemnoœæ: "	 	 << capacity		<< std::endl;
-	std::cout << "Iloœæ Cylindrów: " << cylinder_count  << std::endl;
-	std::cout << "Rezerwacje: "<< std::endl;
-	for (int i = 0; i < countTimeStamps(); i++){
-		std::cout << timeStampToString(i);
+
+void Car::printData()
+{
+	cout.width(20);
+	cout << this->ID;
+	cout.width(20);
+	cout << this->cost;
+	cout.width(20);
+	cout << this->marka;
+	cout.width(20);
+	cout << this->model;
+	cout.width(20);
+	cout << this->color;
+	cout.width(20);
+	cout << this->power;
+	cout.width(20);
+	cout << this->capacity;
+	cout.width(20);
+	cout << this->cylinder_count;
+
+	for (int i = 0; i < countTimeStamps(); i++)
+	{
+		std::pair<time_t, time_t> temp_ts = getTimeStamp(i);
+		cout.width(15);
+		cout << timeStampToString(temp_ts.first);
+		cout.width(15);
+		cout << timeStampToString(temp_ts.second);
 	}
+	cout << "\n\n";
 }
+
+void Car::printHeadLine()
+{
+	cout.width(20);
+	cout << "ID";
+	cout.width(20);
+	cout << "Koszt";
+	cout.width(20);
+	cout << "Marka";
+	cout.width(20);
+	cout << "Model";
+	cout.width(20);
+	cout << "Kolor";
+	cout.width(20);
+	cout << "Moc silnka";
+	cout.width(20);
+	cout << "Pojemnosc";
+	cout.width(20);
+	cout << "Ilosc cylindrow" << endl;
+
+	for (int i = 0; i < 8 * 20; i++)
+		cout << "-";
+	cout << endl;
+}
+
+
 std::string Car::getId(){
 	return ID;
+}
+
+string Car::getBrand()
+{
+	return this->marka;
+}
+
+string Car::getColor()
+{
+	return this->color;
 }

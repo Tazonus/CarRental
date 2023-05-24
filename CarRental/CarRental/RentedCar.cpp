@@ -38,6 +38,7 @@ void RentedCar::removeTimeStamp(int id)
 {
 	if (id < timeStamps.size()) {
 		timeStamps.erase(timeStamps.begin() + id);
+		std::cout << std::endl << "Zwrócono pomyslnie" << std::endl;
 	}
 	else {
 		std::cout << "This car has only " << timeStamps.size() << " Reservations, input value: " << (id + 1);

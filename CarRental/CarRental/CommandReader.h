@@ -10,7 +10,7 @@ class CommandReader
 {
 private:
 	/// <summary>
-	/// Vector of strings that stores command and its arguments
+	/// Vector of string that stores command and arguments
 	/// </summary>
 	vector<string> command;
 
@@ -18,8 +18,8 @@ private:
 	/// Data storage
 	/// </summary>
 	Data data;
-	
-public: 
+
+public:
 	CommandReader();
 	~CommandReader();
 
@@ -40,8 +40,8 @@ private:
 	/// <summary>
 	/// Function checks if command is correct and if it's arguments are valid
 	/// </summary>
-	/// <returns>1 add | 2 remove | 3 search | 4 rent | 5 unrent | 0 invalid argument | -1 invalid command </returns>
-	int CheckCommand();
+	/// <returns>1 add | 2 remove | 3 search | 4 rent | 5 unrent | 0 no permission | -1 invalid command | -2 invalid argument</returns>
+	int CheckCommand(bool isAdmin);
 
 	/// <summary>
 	/// Adds new Car object to Data map
@@ -54,16 +54,39 @@ private:
 	/// </summary>
 	void Add();
 
-	void Remove(string id);
-	void Rent(string id);
-	void Unrent(Car car);
+	void Remove();
+	void Rent();
+	void Unrent();
 
 	/// <summary>
 	/// Prints values from map
 	/// </summary>
-	/// <param name="id">"-all" -> prints every value</param>
-	void Search(string id);
+	void Search();
+
+	/// <summary>
+	/// Prints possible commands for the administrator (if the administrator is logged in)
+	/// </summary>
+	void AdminHelp();
+
+	/// <summary>
+	/// Prints possible commands for the user
+	/// </summary>
+	void UserHelp();
+
 	string Hash(string line);
+
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns>true if logged correctly</returns>
+	bool Login();
+
+	/// <summary>
+	/// Scans car data
+	/// </summary>
+	/// <returns>Returns car data in string format, separated by semicolon</returns>
+	string InputCarData();
+
 
 	/// <summary>
 	/// Splits substrings separated by space sign into vector of string 
@@ -73,10 +96,6 @@ private:
 	/// <returns></returns>
 	vector<string> Split(string arg, char space);
 
-	/// <summary>
-	/// Scans car data
-	/// </summary>
-	/// <returns>Returns car data in string format, separated by semicolon</returns>
-	string InputCarData();
+	static std::time_t stringToTime_t(const std::string& str, bool is_dst = false, const std::string& format = "%Y-%b-%d");
 };
 

@@ -1,7 +1,10 @@
 ﻿#include <iostream>
+#include <fstream>
 #include "Interface.h"
 #include "UserInterface.h"
 #include "AdminInterface.h"
+#include "FileHandler.h"
+
 using namespace std;
 
 
@@ -9,24 +12,24 @@ int main()
 {
 	auto mainInterface = new Interface();
 
-	/*string passwd;
+	string passwd;
+	
+	mainInterface = new UserInterface();
 
-	cin >> passwd;
-
-	if (passwd.compare("qwerty"))
+	int result = 1;
+	do
 	{
-		mainInterface = new AdminInterface();
-	}
-	else
-	{
-		mainInterface = new UserInterface();
-	}
+		result = mainInterface->Run();
 
-	cout<<mainInterface->Run();
-	*/
+		if (result == 1)
+		{
+			delete(mainInterface);
+			mainInterface = new AdminInterface();
+		}
 
-	mainInterface = new AdminInterface();
-	mainInterface->Run();
+	} while (result > 0);
 
+
+	
 	return 0;
 }
