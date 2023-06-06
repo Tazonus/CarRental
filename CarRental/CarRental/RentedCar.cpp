@@ -9,6 +9,7 @@ std::pair <time_t, time_t> RentedCar::getTimeStamp(int id) {
 		std::cout << "This car has only " << timeStamps.size() << " Reservations, input value: " << (id + 1);
 	}
 }
+
 void RentedCar::UpdateTimeStamp() {
 	sortTimeStamps();
 	int i = 0;
