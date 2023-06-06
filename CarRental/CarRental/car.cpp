@@ -36,6 +36,8 @@ Car::Car(std::string arg)
 		std::string temp = loader(arg);
 		if (temp != "NO DATA" || temp != "") {
 			
+			
+			std::string contact;
 			std::istringstream(temp) >> first;
 			temp = loader(arg);
 
@@ -44,7 +46,8 @@ Car::Car(std::string arg)
 			}
 			else second = first;
 
-			this->addTimeStamp(first, second);
+			contact = loader(arg);
+			addTimeStamp(first, second, contact);
 		}
 	}
 
@@ -77,6 +80,7 @@ std::string Car::dataToString()
 		std::pair<time_t, time_t> temp_ts = getTimeStamp(i);
 		temp += std::to_string(temp_ts.first) + ';';
 		temp += std::to_string(temp_ts.second) + ';';
+		temp += getContact(i) + ';';
 	}
 	return temp;
 }
@@ -102,11 +106,8 @@ void Car::printData()
 
 	for (int i = 0; i < countTimeStamps(); i++)
 	{
-		std::pair<time_t, time_t> temp_ts = getTimeStamp(i);
-		cout.width(15);
-		cout << timeStampToString(temp_ts.first);
-		cout.width(15);
-		cout << timeStampToString(temp_ts.second);
+		cout << "     RentID-" << i << " ";
+		cout << timeStampToString(i);
 	}
 	cout << "\n\n";
 }

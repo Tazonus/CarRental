@@ -98,7 +98,13 @@ int CommandReader::ExecuteCommand(bool isAdmin)
             cout << "Niepoprawne haslo" << endl;
 
         break;
-
+    case 10:
+        system("cls");
+        if (isAdmin)
+            return 2;
+        else
+            cout << endl << "Nie jestes w panelu administratora" << endl;
+        break;
     case 0:
         system("cls");
         cout << "Brak dostepu" << endl;
@@ -130,7 +136,7 @@ int CommandReader::CheckCommand(bool isAdmin)
     }
 
     // Check remove command arguments
-    if (this->command[0] == "remove")
+    else if (this->command[0] == "remove")
     {
         if (isAdmin)
             return 2;
@@ -138,7 +144,7 @@ int CommandReader::CheckCommand(bool isAdmin)
     }
 
     // Check search command arguments
-    if (this->command[0] == "search")
+    else if (this->command[0] == "search")
     {
         if (this->command.size() > 1)
         {
@@ -181,17 +187,17 @@ int CommandReader::CheckCommand(bool isAdmin)
 
     }
 
-    if (this->command[0] == "rent")
+    else if (this->command[0] == "rent")
     {
-        if (this->command.size() < 4)
-        {
+        if (this->command.size() < 3)
+        {  
             return -2;
         }
 
         return 4;
     }
 
-    if (this->command[0] == "unrent")
+    else if (this->command[0] == "unrent")
     {
         if (this->command.size() < 3)
         {
@@ -201,26 +207,31 @@ int CommandReader::CheckCommand(bool isAdmin)
         return 5;
     }
 
-    if (this->command[0] == "exit")
+    else if (this->command[0] == "exit")
     {
         return 6;
     }
 
-    if (this->command[0] == "adminhelp")
+     else if (this->command[0] == "adminhelp")
     {
         if (isAdmin)
             return 7;
         return 0;
     }
 
-    if (this->command[0] == "userhelp")
+    else if (this->command[0] == "userhelp")
     {
-        return 8;
+		return 8;
     }
 
-    if (this->command[0] == "login")
+    else if (this->command[0] == "login")
     {
         return 9;
+    }
+
+    else if (this->command[0] == "logoff")
+    {
+        return 10;
     }
 
     return -1;
@@ -319,12 +330,18 @@ void CommandReader::Rent()
         cout << endl << "Nie znaleziono samochodu" << endl;
         return;
     }
-    
+
 
     auto first = stringToTime_t(this->command[2]);
-    auto second = stringToTime_t(this->command[3]);
-
-    data.rentCar(this->command[1], first, second);
+    auto second = first;
+    string third = "";
+    if (command.size() > 3) {
+        second = stringToTime_t(this->command[3]);
+        if (command.size() > 4) {
+            third = this->command.at(4);
+        }
+    }
+    data.rentCar(this->command[1], first, second, third);
 
     cout << endl << "Wypozyczono pomyslnie" << endl;
 }

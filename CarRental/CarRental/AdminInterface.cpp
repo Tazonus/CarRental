@@ -27,6 +27,11 @@ int AdminInterface::Run()
 			return 1;
 		}
 
+		if (result ==2) // logoff
+		{
+			return 2;
+		}
+
 	} while (result >= 0);
 
 	delete(commandReader);

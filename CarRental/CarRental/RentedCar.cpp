@@ -26,13 +26,15 @@ void RentedCar::UpdateTimeStamp() {
 		else timeStamps.erase(timeStamps.begin(), timeStamps.begin() + i);
 	}
 }
-void RentedCar::addTimeStamp(time_t first, time_t second) {
-	if (first < second){
+void RentedCar::addTimeStamp(time_t first, time_t second, std::string contact) {
+	if (first > second){
 		timeStamps.push_back({second, first});
 	}
 	else {
 		timeStamps.push_back({first, second});
 	}
+	this->contacts.push_back(contact);
+	UpdateTimeStamp();
 }
 void RentedCar::removeTimeStamp(int id)
 {
@@ -49,7 +51,9 @@ void RentedCar::sortTimeStamps() {
 	for (size_t iter = 0; iter < n; iter++)
 	{
 		for (size_t i = 1; i < n; i++) {
-			if (timeStamps.at(i).first < timeStamps.at(i - 1).first) {
+			if (timeStamps.at(i).first < timeStamps.at(i - 1).first)
+			{
+				contacts.at(i).swap(contacts.at(i - 1));
 				timeStamps.at(i).swap(timeStamps.at(i - 1));
 			}
 		}
@@ -66,8 +70,10 @@ std::string RentedCar::timeStampToString(int id) {
 	
 	struct tm* ti;
 	ti = localtime(&first);
-
 	std::string output = "";
+	if (contacts.at(id) != "NO DATA"){
+		 output = contacts.at(id) + " ";
+	}
 	output += std::to_string(ti->tm_year + 1900);
 	output += ".";
 	output += std::to_string(ti->tm_mon + 1);
@@ -85,4 +91,7 @@ std::string RentedCar::timeStampToString(int id) {
 		output += std::to_string(ti->tm_mday);
 	}
 	return output;
+}
+std::string RentedCar::getContact(int id) {
+	return contacts.at(id);
 }

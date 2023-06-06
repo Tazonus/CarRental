@@ -17,6 +17,7 @@ void Data::loadData(std::string filename) {
 		if (temp == "")
 			continue;
 		Car tempCar(fileHandler->Encrypt(temp));
+		tempCar.UpdateTimeStamp();
 		carData.insert({ tempCar.getId(),tempCar });
 	}
 
@@ -32,7 +33,7 @@ void Data::saveData(std::string filename) {
 	auto fileHandler = new FileHandler();
 
 	for (std::pair<std::string, Car> x : carData) {
-
+		x.second.UpdateTimeStamp();
 		file << fileHandler->Encrypt(x.second.dataToString())<< std::endl;
 	}
 
@@ -88,11 +89,11 @@ void Data::removeCar(std::string ID) {
 	carData.erase(carData.find(ID));
 }
 
-void Data::rentCar(std::string ID, time_t first, time_t second)
+void Data::rentCar(std::string ID, time_t first, time_t second, std::string contact)
 {
 	auto rentedCar = find(ID);
 	removeCar(ID);
-	rentedCar.addTimeStamp(first, second);
+	rentedCar.addTimeStamp(first, second, contact);
 	addCar(rentedCar);
 }
 

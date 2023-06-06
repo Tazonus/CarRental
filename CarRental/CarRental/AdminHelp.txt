@@ -4,6 +4,7 @@ Dostepne komendy dla Administratora:
 add (dodaje auto do bazy pojazdow)
 remove [id pojazdu] (usuwa auto z bazy pojazdow)
 exit (zapisuje dane)
+logoff (wylogowanie z admin panelu)
 search [id pojazdu] [tryb sortowania] (wyswietla pojazdy z bazy danych)
 	search "id" (wyswietla pojazd o numerze rejestracyjnym "id") [-all aby wyswietlic wszystko]
 	search -color (sortuje auta wedlug koloru)

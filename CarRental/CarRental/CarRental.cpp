@@ -27,6 +27,12 @@ int main()
 			mainInterface = new AdminInterface();
 		}
 
+		if (result == 2)
+		{
+			delete(mainInterface);
+			mainInterface = new UserInterface();
+		}
+
 	} while (result > 0);
 
 

@@ -26,6 +26,11 @@ int UserInterface::Run()
 			return 1;
 		}
 
+		if (result == 2)
+		{
+			return 2;
+		}
+
 	} while (result >= 0);
 
 	delete(commandReader);
