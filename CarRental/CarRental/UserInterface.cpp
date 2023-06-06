@@ -28,7 +28,7 @@ int UserInterface::Run()
 
 		if (result == 2)
 		{
-			return 2;
+			return 2;	// wylogowano
 		}
 
 	} while (result >= 0);

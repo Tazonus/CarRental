@@ -18,21 +18,63 @@ class Car :
 	std::string marka;
 	std::string model;
 	std::string color;
-	//functions
+	
+	/// <summary>
+	/// Loads a car from string arguments
+	/// </summary>
+	/// <param name="arg"> string arguments containging car data</param>
+	/// <returns> string without semicolon</returns>
 	std::string loader(std::string& arg);
 
 public:
 
-	//functions
+	/// <summary>
+	/// Default constructor creates empty Car object
+	/// </summary>
 	Car();
+
+	/// <summary>
+	/// Constructor that creates Car object using arguments in string format
+	/// </summary>
+	/// <param name="arg"> string containing car arguments</param>
 	Car(string arg);
+
+	/// <summary>
+	/// Converts Car data to string
+	/// </summary>
+	/// <returns>string containing Car arguments</returns>
 	string dataToString();
+
+	/// <summary>
+	/// Prints headline in console
+	/// </summary>
 	static void printHeadLine();
+
+	/// <summary>
+	/// Prints data of a car
+	/// </summary>
 	void printData();
+
+	/// <summary>
+	/// Returns ID
+	/// </summary>
 	string getId();
+
+	/// <summary>
+	/// Returns Brand
+	/// </summary>
 	string getBrand();
+
+	/// <summary>
+	/// Returns Color
+	/// </summary>
 	string getColor();
 
+	/// <summary>
+	/// Operator to compare two Cars if they are equal
+	/// </summary>
+	/// <param name="d">object to compare to</param>
+	/// <returns>true if two object are the same</returns>
 	bool operator == (const Car& d) const {
 		if (d.ID == this->ID
 			&& d.cost == this->cost
@@ -49,6 +91,11 @@ public:
 			return false;
 	}
 
+	/// <summary>
+	/// Operator to compare two Cars if they are not equal
+	/// </summary>
+	/// <param name="d">object to compare to</param>
+	/// <returns>true if two object are not the same</returns>
 	bool operator != (const Car& d) const {
 		if (d.ID == this->ID
 			&& d.cost == this->cost
